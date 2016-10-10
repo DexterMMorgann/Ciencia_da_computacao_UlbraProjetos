@@ -1,3 +1,10 @@
+/* 
+T22 - Em progresso;
+
+151013010 - MARIO ALVES
+mat - VICTOR OLIVEIRA
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -87,7 +94,7 @@ main(int qtd, char *parMain[]){
 
 
 	printf("\n# Alocado com sucesso espaco para %i turmas! #\n", qtdTurmas);
-	/* Início das leituras */
+	/* InÃ­cio das leituras */
 	for (i=0; i<qtdTurmas; i++){
 		
 		printf("\n# - - - TURMA [%i] - - - #\n\n", i);

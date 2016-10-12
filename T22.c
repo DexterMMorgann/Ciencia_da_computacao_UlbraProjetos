@@ -62,7 +62,7 @@ main(int qtd, char *parMain[]){
 	int r;				/* r = resultado da leitura das turmas */
 	int i, j;				/* i = j = utilizar no for */
 	int qtdTurmas;
-	struct TURMA turma;
+	struct TURMA turma[STR];
 	
 	qtdTurmas = atoi(parMain[1]);
 	
@@ -103,26 +103,26 @@ main(int qtd, char *parMain[]){
 		leString(turma[i].nTurma, STR);
 		
 		printf("# Nome da Disciplina: \n");
-		leString(turma[i].nTurma, STR);
+		leString(turma[i].nomeDisciplina, STR);
 		
 		printf("# Nome do Professor: \n");
 		leString(turma[i].nomeProfessor, STR);
 		
-		printf("# Quantos alunos tem a turma %s ?", turma[i].nTurma);
+		printf("# Quantos alunos tem a turma %s ?\n", turma[i].nTurma);
 		do{
-			r = scanf("%i", &livro[i].qtdPaginas);
-			if(r == 0){
+			r = scanf("%i", &turma[i].qtdAlunos);
+			if(r == 0 || (turma[i].qtdAlunos < 0)){
 				printf("ERRO entrada invalida!\n\n");
-				printf("# Quantos alunos tem a turma %s ?", turma[i].nTurma);
+				printf("# Quantos alunos tem a turma %s ?\n", turma[i].nTurma);
             	while (fgetc(stdin) != '\n');
             	continue;
 			}
-		}while (r==0);
+		}while (r==0 || turma[i].qtdAlunos < 0);
 		
 		printf("# Alocado com sucesso espaco para %i aluno(s) na turma %s! \n", turma[i].qtdAlunos, turma[i].nTurma);
 		
 		/* Inicio da Leitura dos Alunos da Turma */
-		for(j = 0; j<turma[i].qtdAlunos){
+		for(j = 0; j<turma[i].qtdAlunos; j++){
 			
 		}
 	

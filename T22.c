@@ -41,7 +41,7 @@ int leString(char s[], int max){
 struct ALUNO{
 	
 	char nMatricula[STR];
-	char nomeAluno;
+	char nomeAluno[STR];
 	double G1;
 	double G2;
 	double G3;
@@ -63,6 +63,7 @@ main(int qtd, char *parMain[]){
 	int i, j;				/* i = j = utilizar no for */
 	int qtdTurmas;
 	struct TURMA turma[STR];
+	struct ALUNO aluno[STR];
 	
 	qtdTurmas = atoi(parMain[1]);
 	
@@ -121,10 +122,52 @@ main(int qtd, char *parMain[]){
 		
 		printf("# Alocado com sucesso espaco para %i aluno(s) na turma %s! \n", turma[i].qtdAlunos, turma[i].nTurma);
 		
+		
 		/* Inicio da Leitura dos Alunos da Turma */
 		for(j = 0; j<turma[i].qtdAlunos; j++){
 			
+			printf("# --- ALUNO [%i] DA TURMA [%s] --- #\n", j, turma[i].nTurma);
+			printf("# Qual o NUMERO DE MATRICULA do aluno?\n");
+			leString(aluno[j].nMatricula, STR);
+			
+			printf("# Qual o NOME do aluno?\n");
+			leString(aluno[j].nomeAluno, STR);
+			
+			printf("# Quais as NOTAS do(a) %s?\n", aluno[j].nomeAluno);
+			printf("\n# NOTA G1: \n");
+			do{
+				r = scanf("%lf", &aluno[j].G1);
+				if(r == 0 || (aluno[j].G1 < 0)){
+					printf("ERRO entrada invalida!\n\n");
+					while (fgetc(stdin) != '\n');
+	            	continue;
+				}
+			}while (r==0 || (aluno[j].G1 < 0));
+					
+			printf("# NOTA G2: \n");
+			do{
+				r = scanf("%lf", &aluno[j].G2);
+				if(r == 0 || (aluno[j].G1 < 0)){
+					printf("ERRO entrada invalida!\n\n");
+					while (fgetc(stdin) != '\n');
+	            	continue;
+				}
+			}while (r==0 || (aluno[j].G2 < 0));
+			
+			printf("# NOTA G3: \n");
+			do{
+				r = scanf("%lf", &aluno[j].G3);
+				if(r == 0 || (aluno[j].G1 < 0)){
+					printf("ERRO entrada invalida!\n\n");
+					while (fgetc(stdin) != '\n');
+	            	continue;
+				}
+			}while (r==0 || (aluno[j].G3 < 0));
+			
+			printf("# --- ALUNO [%i] --- FIM DO CADASTRO --- #\n", j);
+			
 		}
+		printf("# --- TURMA [%i] --- FIM DO CADASTRO --- #\n", i);
 	
 	
 	}

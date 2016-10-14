@@ -80,8 +80,26 @@ main(int qtd, char *parMain[]){
 			}
 		}while(qtdTurmas<=0);
 	}
+	/* Trecho adicionado para leitura do main; */
+	if((qtd == 1)&&(qtdTurmas <= 0)){
+		do{
+			printf("# Quantas turmas voce quer cadastrar:\n");
+			r = scanf("%i", &qtdTurmas);
+			if(r == 0){
+				printf("ERRO entrada invalida\n");
+				while(fgetc(stdin) != '\n');
+				continue;
+			}
+			if(qtdTurmas < 0){
+				printf("# ERRO Quantidade de turmas deve ser maior que 0\n\n");
+				while(fgetc(stdin) != '\n');
+				continue;
+        		}
+        	}while(r == 0 || qtdTurmas < 0);
+	}//Ate aqui;
 	
-	if(qtd == 1){
+	/* Trecho inserido e alterado no código; */
+	if((qtd > 1) && (qtdTurmas <= 0)){
 		do{
 			printf("# Quantas turmas voce quer cadastrar?\n");
 			r = scanf("%i", &qtdTurmas);
@@ -92,10 +110,21 @@ main(int qtd, char *parMain[]){
 			}
 		}while(qtdTurmas<=0);	
 	}
-
-
+	
+	/*if(qtd == 1){
+		do{
+			printf("# Quantas turmas voce quer cadastrar?\n");
+			r = scanf("%i", &qtdTurmas);
+			if((r == 0) || (qtdTurmas<=0)){
+				printf("# ERRO: quantidade de Turmas deve ser maior que 0\n");
+				while(fgetc(stdin) != '\n');
+				continue;
+			}
+		}while(qtdTurmas<=0);	
+	}*/
 
 	printf("\n# Alocado com sucesso espaco para %i turmas! #\n", qtdTurmas);
+	printf("# Digite dados para %d turma(s)\n\n", qtdTurmas);
 	/* Início das leituras */
 	for (i=0; i<qtdTurmas; i++){
 		
@@ -110,13 +139,20 @@ main(int qtd, char *parMain[]){
 		leString(turma[i].nomeProfessor, STR);
 		
 		printf("# Quantos alunos tem a turma %s ?\n", turma[i].nTurma);
-		do{
+		do{ //Trecho inserido para exibir msg que pede;
 			r = scanf("%i", &turma[i].qtdAlunos);
-			if(r == 0 || (turma[i].qtdAlunos < 0)){
+			if(r == 0){
 				printf("ERRO entrada invalida!\n\n");
 				printf("# Quantos alunos tem a turma %s ?\n", turma[i].nTurma);
-            	while (fgetc(stdin) != '\n');
-            	continue;
+				printf("# Quantos alunos tem a turma %s?\n", turma[i].nTurma);
+            			while (fgetc(stdin) != '\n');
+            			continue;
+			}if(turma[i].qtdAlunos < 0){
+				printf("ERRO %d\n", turma[i].qntdAlunos);
+				printf("# Quantidade de alunos deve ser menor ou igual a 0\n\n");
+				printf("# Quantos alunos tem a turma %s?\n", turma[i].nTurma);
+				while (fgetc(stdin) != '\n');
+            			continue;
 			}
 		}while (r==0 || turma[i].qtdAlunos < 0);
 		
@@ -137,30 +173,51 @@ main(int qtd, char *parMain[]){
 			printf("\n# NOTA G1: \n");
 			do{
 				r = scanf("%lf", &aluno[j].G1);
-				if(r == 0 || (aluno[j].G1 < 0)){
+				if(r == 0){ /* Inserido if a mais nas notas dos alunos;*/
 					printf("ERRO entrada invalida!\n\n");
+					printf("# NOTA G1:\n");
 					while (fgetc(stdin) != '\n');
-	            	continue;
+	            			continue;
+				}if(aluno[j].G1 < 0){
+					printf("ERRO %.0lf\n", aluno[j].G1);
+					printf("# ERRO: Nota deve ser maior ou igual a zero\n\n");
+					printf("# NOTA G1:\n");
+					while (fgetc(stdin) != '\n');
+           		 		continue;
 				}
 			}while (r==0 || (aluno[j].G1 < 0));
 					
 			printf("# NOTA G2: \n");
 			do{
 				r = scanf("%lf", &aluno[j].G2);
-				if(r == 0 || (aluno[j].G1 < 0)){
+				if(r == 0){/* Inserido if a mais nas notas dos alunos;*/
 					printf("ERRO entrada invalida!\n\n");
+					printf("# NOTA G2:\n");
 					while (fgetc(stdin) != '\n');
-	            	continue;
+	            			continue;
+				}if(aluno[j].G2 < 0){
+					printf("ERRO %.0lf\n", aluno[j].G2);
+					printf("# ERRO: Nota deve ser maior ou igual a zero\n\n");
+					printf("# NOTA G2:\n");
+					while (fgetc(stdin) != '\n');
+           		 		continue;
 				}
 			}while (r==0 || (aluno[j].G2 < 0));
 			
 			printf("# NOTA G3: \n");
 			do{
 				r = scanf("%lf", &aluno[j].G3);
-				if(r == 0 || (aluno[j].G1 < 0)){
+				if(r == 0){/* Inserido if a mais nas notas dos alunos;*/
 					printf("ERRO entrada invalida!\n\n");
+					printf("# NOTA G3:\n");
 					while (fgetc(stdin) != '\n');
-	            	continue;
+	            			continue;
+				}if(aluno[j].G3 < 0){
+					printf("ERRO %.0lf\n", aluno[j].G3);
+					printf("# ERRO: Nota deve ser maior ou igual a zero\n\n");
+					printf("# NOTA G3:\n");
+					while (fgetc(stdin) != '\n');
+           		 		continue;
 				}
 			}while (r==0 || (aluno[j].G3 < 0));
 			
